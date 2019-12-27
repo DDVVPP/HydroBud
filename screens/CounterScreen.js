@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import _ from 'lodash';
 
+import 'firebase/firestore';
+import { FirebaseWrapper } from '../firebase/firebase';
+
 import { View, Text, Image, StyleSheet, Animated, Alert } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
@@ -67,13 +70,22 @@ export default class CounterScreen extends Component {
     this._blinkTimer = setTimeout(this.blink, _.random(1000, 2000));
   };
 
-  updateState() {
-    if (this.state.remaining > 0) {
-      this.setState({
-        remaining: this.state.remaining - 1,
-      });
-    } else {
-      Alert.alert('You have had enough water for the day! Come back tomorrow!');
+  async updateState() {
+    try {
+      if (this.state.remaining > 0) {
+        this.setState({
+          remaining: this.state.remaining - 1,
+        });
+      } else {
+        Alert.alert(
+          'You have had enough water for the day! Come back tomorrow!'
+        );
+      }
+      // await FirebaseWrapper.GetInstance().UpdateUser('users', {
+      //   remaining: this.state.remaining - 1,
+      // });
+    } catch (error) {
+      console.log('at updateState ', error);
     }
   }
   render() {

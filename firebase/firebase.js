@@ -60,26 +60,19 @@ export class FirebaseWrapper {
     } catch (error) {
       console.log('getUser error ', error);
     }
-
-    // try {
-    //   const ref = this._firestore.collection(collectionPath);
-    //   await ref.onSnapshot(querySnapshot => {
-    //     let docData;
-    //     querySnapshot.forEach(doc => {
-    //       if (doc.data().email === userEmail) {
-    //         console.log('DOC DATA ', doc.data());
-    //         docData = doc.data();
-    //       } else {
-    //         console.log('im not working');
-    //       }
-    //     });
-    //     console.log('AFTER QUERY ', docData);
-    //     return docData;
-    //   });
-    // } catch (error) {
-    //   console.log('getUser error ', error);
-    // }
   }
+
+  // async UpdateUser(collectionPath, doc) {
+  //   try {
+  //     //creates reference to doc
+  //     const ref = this._firestore.collection(collectionPath).doc();
+
+  //     console.log('updateUser is working');
+  //     return await ref.child(doc).update(value.remaining);
+  //   } catch (error) {
+  //     console.log('at updateUser ', error);
+  //   }
+  // }
 
   //after CreatePost.js stuff come back here
   //set up a listener to a collection - every time a new User is created, do a specific function

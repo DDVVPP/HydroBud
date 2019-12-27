@@ -25,6 +25,7 @@ export default class SignupScreen extends Component {
       weight: 0,
       age: 0,
       totalCups: 0,
+      // remaining: 0,
     };
     this.createUser = this.createUser.bind(this);
     this.calculateCups = this.calculateCups.bind(this);
@@ -51,25 +52,6 @@ export default class SignupScreen extends Component {
 
   async createUser() {
     try {
-      this.setState({
-        totalCups: this.calculateCups(),
-      });
-
-      await FirebaseWrapper.GetInstance().CreateNewDocument('users', {
-        firstName: this.state.firstName,
-        lastName: this.state.lastName,
-        email: this.state.email,
-        password: this.state.password,
-        height: Number(this.state.height),
-        weight: Number(this.state.weight),
-        age: Number(this.state.age),
-        totalCups: Number(this.calculateCups()),
-      });
-
-      await firebase
-        .auth()
-        .createUserWithEmailAndPassword(this.state.email, this.state.password);
-
       if (this.state.firstName === '') {
         Alert.alert('Please fill First Name');
       } else if (this.state.lastName === '') {
@@ -94,6 +76,27 @@ export default class SignupScreen extends Component {
       } else if (this.state.age < 13 || this.state.age > 120) {
         Alert.alert('Please enter valid age');
       } else {
+        this.setState({
+          totalCups: this.calculateCups(),
+        });
+
+        await firebase
+          .auth()
+          .createUserWithEmailAndPassword(
+            this.state.email,
+            this.state.password
+          );
+        await FirebaseWrapper.GetInstance().CreateNewDocument('users', {
+          firstName: this.state.firstName,
+          lastName: this.state.lastName,
+          email: this.state.email,
+          password: this.state.password,
+          height: Number(this.state.height),
+          weight: Number(this.state.weight),
+          age: Number(this.state.age),
+          totalCups: Number(this.calculateCups()),
+          // remaining: Number(this.calculateCups()),
+        });
         this.props.navigation.navigate('Confirmation', this.state);
       }
     } catch (error) {
