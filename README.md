@@ -19,6 +19,7 @@ Download the expo app on your phone scan the QR code code from Metro Bundler.
 - Node.js
 - React-Native
 - Firebase Firecloud
+- Figma for layouts with original illustrations
 
 ## Author:
 
