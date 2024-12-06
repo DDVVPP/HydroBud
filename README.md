@@ -2,7 +2,9 @@
 
 A hydration tracker for users who do not drink enough water during the day. The app will recommend the number of cups a day a user should consume, and track the user intake with a game-like interface.
 
-\*This is version two of the original project. Please let me know if you'd like to view the original repository.
+### Link to HydroBud v.1
+
+<a href="https://github.com/thats-so-ravenclaw/grace-shopper/">HydroBud v.1 GitHub</a>
 
 ## Install & Run:
 
